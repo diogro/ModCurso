@@ -37,30 +37,29 @@ O link "Atividades Preparatórias" oferece um introdução da linguagem.
 # Aulas Teóricas
 
 [Leituras](leituras.zip)
+[Apostila de biologia evolutiva](https://github.com/lem-usp/apostila-bio-evol/blob/master/apostila-Bio312.pdf?raw=true)
 
 ### 0. Histórico
 
 + [Apresentação](Aulas/Historico.pptx)
 
-### 1. *Níveis de modularidade: individual e populacional*
+### 1. *Introdução à genética quantitativa: efeitos genéticos e variação*
 
-+ [Apresentação](Aulas/Niveis_modularidade.pptx)
++ [Apresentação](Aulas/intro_quant_gen.pdf)
 
 + Leitura principal: 
 
-    * Cheverud, J M. “Developmental Integration and the Evolution of Pleiotropy.” American Zoology 36 (1996): 44–50.
+    * Hill, William G. 2010. “Understanding and Using Quantitative Genetic Variation.” Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences 365 (1537): 73–85.
 
-    * Atentem para as ideias de níveis de integração/modularidade e a interrelação entre eles; de seleção estabilizadora e efeitos genéticos pleiotrópicos.
+    * Wilson, Alastair J., Denis Réale, Michelle N. Clements, Michael M. Morrissey, Erik Postma, Craig A. Walling, Loeske E. B. Kruuk, and Daniel H. Nussey. 2010. “An Ecologist’s Guide to the Animal Model.” The Journal of Animal Ecology 79 (1): 13–26.
 
 + Leituras complementares: 
-  
-    * Bowler, P. “Variation from Darwin to the Modern Synthesis.” *In* Variation: A Central Concept in Biology, 2003. 
-  
-    * Klingenberg, C P. “Morphological Integration and Developmental Modularity.” Annual Review of Ecology, Evolution, and Systematics 39, no. 1 (2008): 115–132. doi:10.1146/annurev.ecolsys.37.091305.110054.
 
-    * Young, N. M., B. Hallgrímsson. “Serial Homology and the Evolution of Mammalian Limb Covariation Structure.” Evolution 59, no. 12 (2005): 2691–2704.
+    * Barton, N. H., A. M. Etheridge, and A. Véber. 2017. “The Infinitesimal Model: Definition, Derivation, and Implications.” Theoretical Population Biology 118 (December): 50–73.
 
-    * Zelditch, M. L., D. L. Swiderski. “Epigenetic Interactions: The Developmental Route to Functional Integration.” *In* Epigenetics: Linking Genotype and Phenotype in Development and Evolution, 290–316, 2011.
+
+    * Fisher, R. A. 1919. “XV.—The Correlation between Relatives on the Supposition of Mendelian Inheritance.” Earth and Environmental Science Transactions of the Royal Society of Edinburgh 52 (2): 399–433.
+  
 
 ### 2. *Homologias, Caracteres e Mensurações* 
 
@@ -92,7 +91,27 @@ O link "Atividades Preparatórias" oferece um introdução da linguagem.
 
 + Caracterização de variação direcional
 
-### 4. *Detecção de Padrões de Modularidade*
+### 4. *Níveis de modularidade: individual e populacional*
+
++ [Apresentação](Aulas/Niveis_modularidade.pptx)
+
++ Leitura principal: 
+
+    * Cheverud, J M. “Developmental Integration and the Evolution of Pleiotropy.” American Zoology 36 (1996): 44–50.
+
+    * Atentem para as ideias de níveis de integração/modularidade e a interrelação entre eles; de seleção estabilizadora e efeitos genéticos pleiotrópicos.
+
++ Leituras complementares: 
+  
+    * Bowler, P. “Variation from Darwin to the Modern Synthesis.” *In* Variation: A Central Concept in Biology, 2003. 
+  
+    * Klingenberg, C P. “Morphological Integration and Developmental Modularity.” Annual Review of Ecology, Evolution, and Systematics 39, no. 1 (2008): 115–132. doi:10.1146/annurev.ecolsys.37.091305.110054.
+
+    * Young, N. M., B. Hallgrímsson. “Serial Homology and the Evolution of Mammalian Limb Covariation Structure.” Evolution 59, no. 12 (2005): 2691–2704.
+
+    * Zelditch, M. L., D. L. Swiderski. “Epigenetic Interactions: The Developmental Route to Functional Integration.” *In* Epigenetics: Linking Genotype and Phenotype in Development and Evolution, 290–316, 2011.
+
+### 5. *Detecção de Padrões de Modularidade*
 
 + [Apresentação](https://github.com/wgar84/ModCurso/raw/master/Aulas/deteccao_modularidade.pdf)
 
@@ -103,7 +122,7 @@ O link "Atividades Preparatórias" oferece um introdução da linguagem.
     * Goswami, A., J. A. Finarelli. “EMMLi: A Maximum Likelihood Approach to the Analysis of Modularity.” Evolution 70, no. 7 (July 1, 2016): 1622–37. doi:10.1111/evo.12956.
 
 
-### 5. *Paisagem adaptativa fenotípica*
+### 6. *Paisagem adaptativa fenotípica*
 
 + [Apresentação](https://github.com/wgar84/ModCurso/raw/master/Aulas/Sele%C3%A7%C3%A3o%20e%20varia%C3%A7%C3%A3o.pdf)
 
@@ -122,7 +141,7 @@ O link "Atividades Preparatórias" oferece um introdução da linguagem.
     + Walsh, Bruce, and Mark W. Blows. 2009. “Abundant Genetic Variation + Strong Selection = Multivariate Genetic Constraints: A Geometric View of Adaptation.” Annual Review of Ecology, Evolution, and Systematics 40 (1): 41–59.
     
 
-### 6. *Consequências evolutivas: restrição, evolvabilidade e flexibilidade*
+### 7. *Consequências evolutivas: restrição, evolvabilidade e flexibilidade*
 
 + [Apresentação](Aulas/consequencias_evolutivas.pdf)
 

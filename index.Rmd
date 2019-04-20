@@ -34,10 +34,13 @@ Durante o curso, nós vamos introduzir alguns conceitos que são cruciais para o
 Se você quiser começar a entender a linguagem antes do curso iniciar, recomendamos o sítio <http://ecologia.ib.usp.br/bie5782/>, da disciplina básica de R oferecida pelo Departamento de Ecologia do IB-USP. 
 O link "Atividades Preparatórias" oferece um introdução da linguagem.
 
-# Aulas Teóricas
+# Material de apoio
 
 [Leituras](leituras.zip)
+
 [Apostila de biologia evolutiva](https://github.com/lem-usp/apostila-bio-evol/blob/master/apostila-Bio312.pdf?raw=true)
+
+# Aulas Teóricas
 
 ### 0. Histórico
 

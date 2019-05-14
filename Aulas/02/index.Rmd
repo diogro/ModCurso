@@ -12,7 +12,7 @@ output:
     fig_caption: true
     css: extra.css
 csl: evolution.csl
-bibliography: /home/guilherme/Dropbox/Global/CursoMod.bib
+bibliography: ../ModCurso.bib
 ---	
 
 <style>

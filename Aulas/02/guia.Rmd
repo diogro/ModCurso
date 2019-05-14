@@ -14,8 +14,8 @@ header-includes:
   - \usepackage{setspace}
   - \doublespacing
 fontsize: 12pt
-csl: /home/guilherme/Dropbox/Global/nature.csl
-bibliography: /home/guilherme/Dropbox/Global/CursoMod.bib
+csl: nature.csl
+bibliography: ../ModCurso.bib
 ---	
 
 Homologias são relações de equivalência entre atributos em espécies distintas.

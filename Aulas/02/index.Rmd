@@ -11,7 +11,7 @@ output:
     widescreen: false
     fig_caption: true
     css: extra.css
-csl: /home/guilherme/Dropbox/Global/evolution.csl
+csl: evolution.csl
 bibliography: /home/guilherme/Dropbox/Global/CursoMod.bib
 ---	
 

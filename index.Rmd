@@ -68,7 +68,7 @@ dt = data.frame(Dias = paste(rep(c("Segunda",
                 
 dt %>%
   kable() %>%
-  kable_styling(full_width = F)
+  kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
 # Aulas Teóricas

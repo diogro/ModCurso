@@ -46,9 +46,9 @@ O link "Atividades Preparatórias" oferece um introdução da linguagem.
 
 + [Apresentação](Aulas/Historico.pptx)
 
-### 1. *Introdução à genética quantitativa: efeitos genéticos e variação*
+### 1. *Introdução à genética quantitativa evolutiva: efeitos genéticos, variação e evolução*
 
-+ [Apresentação](Aulas/intro_quant_gen.pdf)
++ [Apresentação](Aulas/IntroQuantGen/index.html?presentme=false)
 
 + Leitura principal: 
 

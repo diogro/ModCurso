@@ -60,11 +60,11 @@ dt = data.frame(Dias = paste(rep(c("Segunda",
                              "Sem tutorial", "Detectando Modularidade",
                              "Sem Tutorial", "Estimando Seleção e a Matriz G",
                              "Consequências Evolutivas"),
-                Professor = c("Monique", "Diogo",
-                              "Diogo", "Diogo",
-                              "Monique", "Monique",
-                              "Diogo", "",
-                              "Monique"))
+                Ministrante = c("Monique", "Diogo",
+                                "Diogo", "Diogo",
+                                "Monique", "Monique",
+                                "Diogo", "",
+                                "Monique"))
                 
 dt %>%
   kable() %>%

@@ -40,6 +40,37 @@ O link "Atividades Preparatórias" oferece um introdução da linguagem.
 
 [Apostila de biologia evolutiva](https://github.com/lem-usp/apostila-bio-evol/blob/master/apostila-Bio312.pdf?raw=true)
 
+# Cronograma
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+if(!require(knitr)){install.packages("knitr"); library(knitr)}
+if(!require(kableExtra)){install.packages("kableExtra"); library(kableExtra)}
+dt = data.frame(Dias = paste(rep(c("Segunda", 
+                                   "Terça", 
+                                   "Quarta", 
+                                   "Quinta", 
+                                   "Sexta"), each = 2), c("Manhã", "Tarde"))[1:9],
+                Aula =c("Introdução e Histórico", "Introdução à Genética Quantitativa",
+                        "Homologia e Mensuração", "Caracterização de variação multidimensional",
+                        "Niveis de Modularidade", "Detecção de Modularidade",
+                        "Seleção e a Paisagem Adaptativa", "Sem aula",
+                        "Consequencias Evolutivas da Modularidade"),
+                Tutorial = c("Introdução ao R", "Sem tutorial",
+                             "Introdução à Algebra Linear", "Estimando matrizes e componentes principais",
+                             "Sem tutorial", "Detectando Modularidade",
+                             "Sem Tutorial", "Estimando Seleção e a Matriz G",
+                             "Consequências Evolutivas"),
+                Professor = c("Monique", "Diogo",
+                              "Diogo", "Diogo",
+                              "Monique", "Monique",
+                              "Diogo", "",
+                              "Monique"))
+                
+dt %>%
+  kable() %>%
+  kable_styling(full_width = F)
+```
+
 # Aulas Teóricas
 
 ### 0. Histórico
@@ -179,3 +210,6 @@ O link "Atividades Preparatórias" oferece um introdução da linguagem.
 **Tutorial 5**: [*Seleção multivariada*](Tutoriais/selecao.html)
 
 **Tutorial 6**: [*Consequências Evolutivas*](Tutoriais/consequencias_evolutivas.html)
+
+
+

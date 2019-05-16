@@ -12,6 +12,8 @@ output:
     css: ../02/extra.css
 csl: evolution.csl
 bibliography: ../ModCurso.bib
+editor_options: 
+  chunk_output_type: console
 ---	
 
 <style>
@@ -74,8 +76,8 @@ $(document).ready(function() {
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
-library(png)
-library(jpeg)
+if(!require(png)){install.packages("png"); library(png)}
+if(!require(jpeg)){install.packages("jpeg"); library(jpeg)}
 knit_hooks$set(plot = function(x, options) {
   paste('<figure><figcaption>', options$fig.cap, '</figcaption><img src="',
         opts_knit$get('base.url'), paste(x, collapse = '.'),
@@ -199,7 +201,7 @@ Liga uma medida do alelo (que é herdado) com o fenótipo (que é definido pelo 
 Vamos calcular o efeito médio de um alelo:
 
 ```{r, results="asis", echo = FALSE}
-library(xtable)
+if(!require(xtable)){install.packages("xtable"); library(xtable)}
 genotypes = c("AA", "AB", "BB")
 phenotypes = c("a", "d", "-a")
 frequencies = c("p²", "2pq", "q²")
@@ -211,8 +213,8 @@ print(tab, type="html")
 ## Genótipos por Fenótipos
 
 ```{r, results="asis", echo = FALSE,  warning=FALSE, message=FALSE, fig.height = 5, fig.width = 7}
-library(ggplot2)
-library(cowplot)
+if(!require(ggplot2)){install.packages("ggplot2"); library(ggplot2)}
+if(!require(cowplot)){install.packages("cowplot"); library(cowplot)}
 genotypes = c("AA", "AB", "BB")
 phenotypes = c(1, 0.5, -1)
 df = data.frame(genótipos = factor(genotypes, levels = c("BB", "AB", "AA")), 
@@ -294,7 +296,8 @@ ggplot(df, aes(genótipos, fenótipos)) + geom_point(size = 2) + geom_hline(yint
   scale_y_continuous(breaks = c(1, 0.5, 0, -1), 
                      labels = c("a", "d", "0", "-a"), limits = c(-1, 2*0.6*alpha)) + 
   scale_x_continuous(breaks = c(0, 1, 2), labels = c("0",  "0.5", "1")) + labs (x = "Proporção do alelo A", y = "Fenótipo") +
-  geom_abline(slope = alpha, intercept = -2*0.4*alpha) + theme_cowplot()
+  geom_abline(slope = alpha, intercept = -2*0.4*alpha) + theme_cowplot() + theme(panel.background = element_rect(fill = "transparent",colour = NA),
+        plot.background = element_rect(fill = "transparent",colour = NA))
 ```
 
 ## Efeito médio de substituição {.centered}
@@ -303,7 +306,7 @@ ggplot(df, aes(genótipos, fenótipos)) + geom_point(size = 2) + geom_hline(yint
 
 ## Valor de acasalamento
 
-- Diferença entre a média do valor da prolê do indivíduo com parceiros tomados ao acaso da população.
+- Diferença entre a média do valor da prole do indivíduo com parceiros tomados ao acaso da população.
 
 - Soma do todos os efeitos médios dos alelos que afetam o fenótipo:
 
@@ -442,13 +445,318 @@ $$
 
 ## Epistasia e variância genética
 
-- Os efeitos de interação contribuem para a variância genética.
+- Os efeitos de interação contribuem para a variância genética, pois os efeitos médios agora dependem de outros loci.
 
 - Epistasia pode fazer coisas bem malucas. Alguns exemplos:
-
+<small>
     - Cheverud, JM, and EJ Routman. 1995. Genetics 139 (3): 1455–61.
     - Cheverud, JM, and EJ Routman. 1996. Evolution 50 (3): 1042.
-    - Carlborg, O, L Jacobsson, P Ahgren, P Siegel, and L Andersson. 2006. Nature Genetics 38 (4): 418–20.
+    - Carlborg, O, et. al. 2006. Nature Genetics 38 (4): 418–20.
     - Le Rouzic, A, and J Álvarez-Castro. 2016. The American Naturalist 188 (6): E134–50.
-    
-# Intermission
+</small>
+
+# {.centered}
+
+![](figures/intermission.jpg){width=100%}
+
+## A teoria evolutiva completa num pacote "simples"
+
+- O teorema de Price fornece uma fundamentação teórica para a teoria evolutiva.
+
+- É um teorema, não uma teoria. É derivado de primeiros princípios.
+
+## Algumas identidades preparatórias
+
+- Covariancia entre $\huge x$ e $\huge y$ é igual a diferença entre a média do produto e o produto das médias:
+
+$$
+\Huge Cov(x, y) = E(xy) - \overline x \cdot \overline y
+$$
+
+- O coeficiente de regressão linear de $\huge y$ em $\huge x$ é igual a covariância entre eles dividido pela variância de $\huge x$
+
+$$
+\Huge \beta_{y, x} = \frac{Cov(x, y)}{Var(x)}
+$$
+
+## Esquema da demonstração
+
+![](figures/price.png){width=100%}
+
+
+- Duas gerações, fenótipo $\huge \phi$ nos parentais, descendentes com fenótipo $\huge \phi_i + \delta_{i,j}$
+- $\huge N$ indivíduos parentais, $\huge W_i$ descendentes por parental
+- Médias: $\huge \overline \phi$, $\huge \overline \delta_{i}$, $\huge \overline W$
+
+## Média da geração dos descendentes
+
+$$
+\huge \phi' = \frac{\sum\limits_{i=1}^N \sum\limits_{j=1}^{W_i} \left ( \phi_i + \delta_{i, j} \right )}{\sum\limits_{i=1}^N W_i}
+$$
+
+## Média da geração dos descendentes
+
+$$
+\huge \phi' = \frac{\sum\limits_{i=1}^N \sum\limits_{j=1}^{W_i} \left ( \phi_i + \delta_{i, j} \right )}{\sum\limits_{i=1}^N W_i} = \frac{\sum\limits_{i=1}^N \left ( \sum\limits_{j=1}^{W_i} \phi_i + \sum\limits_{j=1}^{W_i} \delta_{i, j} \right )}{\sum\limits_{i=1}^N W_i}
+$$
+
+## Média da geração dos descendentes
+
+$$
+\huge \phi' = \frac{\sum\limits_{i=1}^N \sum\limits_{j=1}^{W_i} \left ( \phi_i + \delta_{i, j} \right )}{\sum\limits_{i=1}^N W_i} = \frac{\sum\limits_{i=1}^N \left ( \sum\limits_{j=1}^{W_i} \phi_i + \sum\limits_{j=1}^{W_i} \delta_{i, j} \right )}{\sum\limits_{i=1}^N W_i}
+$$
+
+$$ 
+\Huge \sum\limits_{j=1}^{W_i} \phi_i = W_i \phi_i \; \; \; \; \; \; \; \; \; \; \; \sum\limits_{j=1}^{W_i} \delta_{i, j} = W_i\overline \delta_i 
+$$
+
+$$ 
+\Huge \sum\limits_{i=1}^{N} W_i = N\overline W 
+$$
+
+## Substituindo...
+
+$$
+\Huge \phi' = \frac{1}{N\overline W} \left [ \sum\limits_{i=1}^{N} W_i\phi_i + \sum\limits_{i=1}^{N} W_i\overline \delta_i  \right ]
+$$
+
+## Achando as médias
+
+$$
+\Huge \phi' = \frac{1}{N\overline W} \left [ \sum\limits_{i=1}^{N} W_i\phi_i + \sum\limits_{i=1}^{N} W_i\overline \delta_i  \right ] =
+$$
+$$
+\Huge \phi' = \frac{1}{\overline W} \left [ E(W\phi) + E( W\overline \delta) \right ]
+$$
+
+## Aparece uma covariância...
+
+
+Lembrando que:
+$$
+\Huge Cov(x, y) = E(xy) - \overline x \cdot \overline y
+$$
+
+Subsituindo $\huge E(W\phi)$ por $\huge Cov(W, \phi) + \overline W  \cdot \overline  \phi$:
+
+$$
+\Huge \phi' = \frac{1}{\overline W} \left [ E(W\phi) + E( W\overline \delta) \right ]
+$$
+
+$$
+\Huge \phi' = \frac{1}{\overline W} \left [ Cov(W, \phi) + \overline W \cdot \overline \phi + E( W\overline \delta) \right ]
+$$
+
+## Teorema de Price
+
+$$
+\Huge \phi' = \frac{1}{\overline W} \left [ Cov(W, \phi) + \overline W \cdot \overline \phi + E( W\overline \delta) \right ]
+$$
+
+$$
+\Huge \boxed {\phi' - \phi = \frac{1}{\overline W} \left [ Cov(W, \phi) + E( W\overline \delta) \right ]}
+$$
+
+## Teorema de Price
+
+Mudança fenotípica tem 2 termos
+$$
+\huge \boxed {\phi' - \phi = \frac{1}{\overline W} \left [ Cov(W, \phi) + E( W\overline \delta) \right ]}
+$$
+
+- Seleção e deriva
+$$
+\huge \frac{1}{\overline W}Cov(W, \phi)
+$$
+
+- Reprodução (recombinação, regressão à média, ...)
+$$
+\huge \frac{1}{\overline W}E( W\overline \delta)
+$$
+
+## Alguns aspectos do teorema
+
+- Mudança ao longo do tempo;
+
+- Fenótipos são totalmente genéricos;
+
+- Relação ancestral-descendente pode ser qualquer coisa;
+
+- Teorema estabelece a algebra entre fenótipo, aptidão, herança e evolução;
+
+- Covariâncias, regressões e médias não tem nada a ver com estatística.
+
+## Relação entre pais e filhos
+
+Fenótipo médio dos descendentes de um ancestral
+
+$$
+\Huge \phi_i^o = \phi_i + \overline \delta_i
+$$
+
+$$
+\Huge \Delta \overline \phi = \frac{1}{\overline W} \left [ Cov(W, \phi) + E( W\overline \delta) \right ]
+$$
+
+Trocando o segundo termo por uma covariância:
+
+$$
+\Huge \Delta \overline \phi = \frac{1}{\overline W} \left [ Cov(W, \phi) + Cov(W, \overline \delta) + \overline W E(\overline \delta)\right ]
+$$
+
+##Juntando as covariâncias:
+
+$$
+\Huge \Delta \overline \phi = \frac{1}{\overline W} \left [ Cov(W, \phi + \overline \delta) \right ] + E(\overline \delta)
+$$
+
+
+
+$$
+\Huge \boxed {\Delta \overline \phi = \frac{1}{\overline W} \left [ Cov(W, \phi^o) \right ] + \overline \delta_T}
+$$
+
+- $\huge \overline \delta_T$ é a média das diferenças entre pais e filhos (não depende da aptidão)
+
+$$
+\Huge  \overline \delta_T = \overline {\phi^o} - \phi
+$$
+
+## Interpretando $Cov(W, \phi^o)$
+
+
+- O termo $\huge Cov(W, \phi^o)$ resume todos os aspectos de seleção, deriva, herança.
+- Resumo: O que importa para a evolução é a covariância entre a aptidão dos pais e fenótipo dos filhos.
+- Bonus: relação entre fenótipo e aptidão não precisa ser causal! Deriva vem de brinde.
+
+## Interpretando $\large \overline \delta_T$ {.centered}
+
+![Relação não linear entre pais e filhos pode alterar a média sem seleção](figures/delta_T_01.png){width=70%}
+
+## Interpretando $\large \overline \delta_T$ {.centered}
+
+![Normalmente é linear e $\huge \overline \delta_T = 0$](figures/delta_T_02.png){width=60%}
+
+## Relação linear entre fenótipo dos pais e filhos
+
+$$
+\Huge \boxed {\Delta \overline \phi = \frac{1}{\overline W} Cov(W, \phi^o) }
+$$
+
+$$
+\Huge \phi^o_i = \overline \phi + \beta_{\phi^o, \phi} (\phi_i - \overline \phi)
+$$
+
+Subsituindo na equação de Price (com $\huge \overline \delta_T = 0$):  
+
+## Relação linear entre fenótipo dos pais e filhos
+
+$$
+\Huge \boxed {\Delta \overline \phi = \frac{1}{\overline W} Cov(W, \phi^o) }
+$$
+
+$$
+\Huge \phi^o_i = \overline \phi + \beta_{\phi^o, \phi} (\phi_i - \overline \phi)
+$$
+
+Subsituindo na equação de Price (com $\huge \overline \delta_T = 0$):  
+
+$$
+\Huge \Delta \overline \phi = \frac{1}{\overline W} Cov(W, \beta_{\phi^o, \phi}\phi)
+$$
+
+## Relação linear entre fenótipo dos pais e filhos
+
+$$
+\Huge \boxed {\Delta \overline \phi = \frac{1}{\overline W} Cov(W, \phi^o) }
+$$
+
+$$
+\Huge \phi^o_i = \overline \phi + \beta_{\phi^o, \phi} (\phi_i - \overline \phi)
+$$
+
+Subsituindo na equação de Price (com $\huge \overline \delta_T = 0$):  
+
+$$
+\Huge \Delta \overline \phi = \frac{1}{\overline W}  \beta_{\phi^o, \phi} Cov(W, \phi)
+$$
+
+## A equação do criador
+
+$$
+\Huge \Delta \overline \phi = \frac{1}{\overline W}  \beta_{\phi^o, \phi} Cov(W, \phi)
+$$
+
+Usando que $\huge Cov(x, y) = \beta_{y, x}Var(x)$:
+
+$$
+\Huge \Delta \overline \phi = \frac{1}{\overline W} \frac{Cov(\phi^o, \phi)}{Var(\phi)} Cov(W, \phi)
+$$
+
+## A equação do criador 
+
+$$
+\Huge \boxed {\Delta \overline \phi = \frac{1}{\overline W} \frac{Cov(\phi^o, \phi)}{Var(\phi)} Cov(W, \phi)}
+$$
+
+- Podemos dividir a aptidão absoluta (número de descendentes) pela média da aptidão para obter a 
+aptidão relativa:
+
+$$
+\huge w = \frac{W}{\overline W}
+$$
+
+## A equação do criador 
+
+$$
+\Huge \boxed {\Delta \overline \phi = \frac{Cov(\phi^o, \phi)}{Var(\phi)} Cov(w, \phi)}
+$$
+
+- $\huge Var(\phi)$ é a variância total do fenótipo, e é usualmente representada por $\huge V_P$.
+
+## A equação do criador
+
+$$
+\Huge \boxed {\Delta \overline \phi = \frac{Cov(\phi^o, \phi)}{V_P} Cov(w, \phi)}
+$$
+
+- A covariância entre mais e filhos ($\huge Cov(\phi^o, \phi)$), num modelo aditivo linear, pode ser aproximada pela variância aditiva ($\huge V_A$).
+
+## A equação do criador
+
+$$
+\Huge \boxed {\Delta \overline \phi = \frac{V_A}{V_P} Cov(w, \phi)}
+$$
+
+- A razão $\huge \frac{V_A}{V_P}$ é tão importante que ela tem um nome só dela, a herdabilidade $\huge h^2$.
+- A herdabilidade mede a fração da variação total que é devido a variação nos valores de acasalamento.
+
+## A equação do criador 
+
+$$
+\Huge \boxed {\Delta \overline \phi = h^2 Cov(w, \phi)}
+$$
+
+- O termo $\huge Cov(w, \phi)$ mede o quanto a média da população muda na geração dos pais depois da seleção, e é chamado de diferencial de seleção $\huge S$
+
+## A equação do criador 
+
+$$
+\Huge \boxed {\Delta \overline \phi = h^2 S}
+$$
+
+- Finalmente, o termo $\huge \Delta \overline \phi$ é a mudança no fenótipo na geração dos filhos, e é chamado de resposta à seleção $\huge R$
+
+## A equação do criador 
+
+$$
+\Huge \boxed {R = h^2 S}
+$$
+
+## A equação do criador {.centered}
+
+$$
+\Huge \boxed {R = h^2 S}
+$$
+
+![](figures/parent-offspring.png){width=70%}

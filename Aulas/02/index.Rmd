@@ -1,8 +1,8 @@
 ---
 title: "Homologias, Caracteres e Mensurações"
 subtitle: "Modularidade: conectando padrões e processos em evolução multivariada"
-author: Guilherme Garcia
-date: wgar@usp.br
+author: Guilherme Garcia, Diogo Melo
+date: wgar@usp.br, diogro@usp.br
 logo: ../../logo.png
 output:
   ioslides_presentation:

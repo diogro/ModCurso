@@ -75,7 +75,7 @@ dt %>%
 
 ### 0. Histórico
 
-+ [Apresentação](Aulas/Historico.pptx)
++ [Apresentação](Aulas/Historico.pdf)
 
 ### 1. *Introdução à genética quantitativa evolutiva: efeitos genéticos, variação e evolução*
 
@@ -129,7 +129,7 @@ dt %>%
 
 ### 4. *Níveis de modularidade: individual e populacional*
 
-+ [Apresentação](Aulas/Niveis_modularidade.pptx)
++ [Apresentação](Aulas/Niveis_modularidade.pdf)
 
 + Leitura principal: 
 

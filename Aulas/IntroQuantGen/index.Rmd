@@ -137,6 +137,9 @@ $$
 ![](figures/z_g_e.png){.centered}
 </center>
 
+## Variação mendeliana e continua
+
+![](figures/discrete_gaussian.png){width=100%}
 
 ## Valor genotípico
 

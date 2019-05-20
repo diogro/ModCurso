@@ -149,7 +149,7 @@ dt %>%
 
 ### 5. *Detecção de Padrões de Modularidade*
 
-+ [Apresentação](https://github.com/wgar84/ModCurso/raw/master/Aulas/deteccao_modularidade.pdf)
++ [Apresentação](Aulas/deteccao_modularidade.pdf)
 
 + Leituras Principais
 
@@ -160,7 +160,7 @@ dt %>%
 
 ### 6. *Paisagem adaptativa fenotípica*
 
-+ [Apresentação](https://github.com/wgar84/ModCurso/raw/master/Aulas/Sele%C3%A7%C3%A3o%20e%20varia%C3%A7%C3%A3o.pdf)
++ [Apresentação](Aulas/Sele%C3%A7%C3%A3o%20e%20varia%C3%A7%C3%A3o.pdf)
 
 + Leituras principais:
 

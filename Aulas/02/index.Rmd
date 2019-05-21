@@ -239,6 +239,8 @@ Conjunto de atributos *mutuamente exclusivos* identificados em um conjunto de or
 > - Aptidão, este atributo elusivo...
 
 > - Nunca se esqueça da distinção entre o fenômeno de interesse e a forma que você usa para representá-lo
+     
+> - Variável teórica -> Variável operacional
 
 ## Porque medir caracteres homólogos? {.centered}
 ![](Figures/gpmap_homology_2.png)

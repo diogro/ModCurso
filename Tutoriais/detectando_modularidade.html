@@ -400,7 +400,7 @@ div.tocify {
 <span class="kw">head</span>(D_skull_cov)
 <span class="kw">head</span>(E_skull_cov)</code></pre></div>
 <p>Os objetos D_skull_cov e E_skull_cov são matrizes de covariância do crânio das espécies D e E de <em>Dentus</em>. Cada matriz tem 35 medidas.</p>
-<p>Para o teste de modularidade, usaremos as matrizes de correlação. Para obtermos as matrizes de correlação a partir das matrizes de covariância vamos usar a função <em>cov2cor</em>.</p>
+<p>Para o teste de modularidade, vamos usar as matrizes de correlação. Para obtermos as matrizes de correlação a partir das matrizes de covariância vamos usar a função <em>cov2cor</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">D_skull_cor =<span class="st"> </span><span class="kw">cov2cor</span>(<span class="kw">as.matrix</span>(D_skull_cov))
 E_skull_cor =<span class="st"> </span><span class="kw">cov2cor</span>(<span class="kw">as.matrix</span>(E_skull_cov))</code></pre></div>
 <p>Agora vamos olhas para as primeiras 15 distancias essas matrizes usando o pacote superheat:</p>

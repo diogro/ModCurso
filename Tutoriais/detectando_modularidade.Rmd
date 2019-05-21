@@ -67,7 +67,7 @@ head(E_skull_cov)
 
 Os objetos D_skull_cov e E_skull_cov são matrizes de covariância do crânio das espécies D e E de *Dentus*. Cada matriz tem 35 medidas.
 
-Para o teste de modularidade, usaremos as matrizes de correlação. Para obtermos as matrizes de correlação a partir das matrizes de covariância vamos usar a função *cov2cor*.
+Para o teste de modularidade, vamos usar as matrizes de correlação. Para obtermos as matrizes de correlação a partir das matrizes de covariância vamos usar a função *cov2cor*.
 
 ```{r, eval=FALSE}
 D_skull_cor = cov2cor(as.matrix(D_skull_cov))

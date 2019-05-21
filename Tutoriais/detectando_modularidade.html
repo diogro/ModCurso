@@ -9,9 +9,8 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Bárbara M. A. Costa" />
+<meta name="author" content="Bárbara M. A. Costa &amp; Monique N. Simon" />
 
-<meta name="date" content="2017-10-05" />
 
 <title>Detectando modularidade</title>
 
@@ -370,8 +369,8 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Detectando modularidade</h1>
-<h4 class="author">Bárbara M. A. Costa</h4>
-<h4 class="date">10/05/2017</h4>
+<h4 class="author">Bárbara M. A. Costa &amp; Monique N. Simon</h4>
+<h4 class="date">21/05/2019</h4>
 
 </div>
 
@@ -387,13 +386,15 @@ div.tocify {
 <li><p>Remover o tamanho das matrizes e realizar o teste de modularidade novamente</p></li>
 <li><p>Testar modularidade em <em>Macaca fuscata</em> utilizando o método de (Goswami e Finarelli, 2016)</p></li>
 </ol>
-<div id="as-analises" class="section level2">
-<h2>As análises</h2>
+</div>
+<div id="as-analises" class="section level1">
+<h1>As análises</h1>
 <p>Vamos carregar os dados que vamos utilizar nesta aula. Você já deve ter salvado o arquivo <a href="https://github.com/wgar84/ModCurso/raw/master/Tutoriais/dentus_skulls.Rdata">dentus_skulls.Rdata</a> em seu diretório de trabalho. No quadrante inferior direito do RStudio, clique nos três pontinhos (em Files) e selecione o arquivo. Clique nele e confirme o “load” dos dados. Você também pode usar fazer o mesmo usando a função load(), exemplo: <em>load(“~/aula modularidade/pratica/dentus_skulls.Rdata”)</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Carregando alguns pacotes </span>
 
 <span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(evolqg)){<span class="kw">install.packages</span>(<span class="st">&quot;evolqg&quot;</span>); <span class="kw">library</span>(evolqg)}
-<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(EMMLi)){<span class="kw">install.packages</span>(<span class="st">&quot;EMMLi&quot;</span>); <span class="kw">library</span>(EMMLi)}</code></pre></div>
+<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(EMMLi)){<span class="kw">install.packages</span>(<span class="st">&quot;EMMLi&quot;</span>); <span class="kw">library</span>(EMMLi)}
+<span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(superheat)){<span class="kw">install.packages</span>(<span class="st">&quot;superheat&quot;</span>); <span class="kw">library</span>(superheat)}</code></pre></div>
 <p>Agora vamos olhas as primeiras linhas dos objetos:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dentus_Models)
 <span class="kw">head</span>(D_skull_cov)
@@ -402,27 +403,67 @@ div.tocify {
 <p>Para o teste de modularidade, usaremos as matrizes de correlação. Para obtermos as matrizes de correlação a partir das matrizes de covariância vamos usar a função <em>cov2cor</em>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">D_skull_cor =<span class="st"> </span><span class="kw">cov2cor</span>(<span class="kw">as.matrix</span>(D_skull_cov))
 E_skull_cor =<span class="st"> </span><span class="kw">cov2cor</span>(<span class="kw">as.matrix</span>(E_skull_cov))</code></pre></div>
-<p>Agora vamos olhas as primeiras linhas das matrizes de correlação das duas espécies:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(D_skull_cor)
-<span class="kw">head</span>(E_skull_cor)</code></pre></div>
-<p>Nós vimos em aula que a magnitude de integração geral se refere ao nível ou à intensidade de associação entre os caracteres, nesse caso, do crânio.</p>
-<p>Vamos calcular a magnitude de integração geral para os crânios dessas duas espécies. Porém, antes de rodar a função, dê uma olhada nela e lembre-se como é feito o cálculo da magnitude de integração.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CalcR2</code></pre></div>
-<p>Agora vamos comparar a intensidade de associação entre os caracteres cranianos das duas espécies:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CalcR2</span>(D_skull_cor)
-<span class="kw">CalcR2</span>(E_skull_cor)</code></pre></div>
-<p>Ótimo! Agora, vamos usar a funçao TestModularity() para investigar o padrão de modularidade nos crânios das duas espécies de <em>Dentus</em>. Para isso, vamos correlacionar uma matriz teórica baseada em hipótese de relações de desenvolvimento e função entre os caracteres medidos (baseada na literatura existente para esse grupo). Elas sao duas espécies do mesmo gênero e, por isso, vamos usar as mesmas hipóteses. Quais foram os módulos detectados com essa análise?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">TestModularity</span>(D_skull_cor, dentus_Models)
+<p>Agora vamos olhas para as primeiras 15 distancias essas matrizes usando o pacote superheat:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">superheat</span>(D_skull_cor[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>])
+<span class="kw">superheat</span>(E_skull_cor[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>])</code></pre></div>
+<div id="magnitudes-de-integracao" class="section level2">
+<h2>Magnitudes de integração</h2>
+<p>Vamos calcular a magnitude de integração geral para os crânios dessas duas espécies. A magnitude de integração geral se refere ao nível ou à intensidade de associação entre os caracteres, nesse caso, do crânio. Olhando para a imagem das 15 primeiras correlacoes de cada especie, qual voce espera ser mais integrada?</p>
+<p>Primeiro, vamos extrair apenas a metade inferior das matrizes de correlacao, usando a funcao lower.tri. Essa eh uma funcao de indexacao. Ao indexar a matriz usando essa funcao, conseguimos extrair as 595 (!) correlacoes. Depois, vamos calcular a media de todas as correlacoes elevadas ao quadrado.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lower.tri</span>(D_skull_cor)
+D_skull_cor[<span class="kw">lower.tri</span>(D_skull_cor)] 
+<span class="kw">hist</span>(D_skull_cor[<span class="kw">lower.tri</span>(D_skull_cor)], <span class="dt">col=</span><span class="st">'gray'</span>, <span class="dt">xlab=</span><span class="st">'Correlations'</span> )
+D_skull_cor[<span class="kw">lower.tri</span>(D_skull_cor)]<span class="op">^</span><span class="dv">2</span>
+<span class="kw">mean</span>(D_skull_cor[<span class="kw">lower.tri</span>(D_skull_cor)]<span class="op">^</span><span class="dv">2</span>)</code></pre></div>
+<p>Calculamos a magnitude de integracao para a matriz da especie D passo a passo. Agora, vamos usar a funcao CalcR2 para fazer esse calculo instantaneamente:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CalcR2
+<span class="kw">CalcR2</span>(<span class="kw">as.matrix</span>(D_skull_cov))
+<span class="kw">CalcR2</span>(<span class="kw">as.matrix</span>(E_skull_cov))</code></pre></div>
+<p>Como voce descreveria as relacoes entre ossos nas especies D e E ao olhar as magnitudes de correlacao?</p>
+</div>
+<div id="testes-estatisticos" class="section level2">
+<h2>Testes estatísticos</h2>
+<p>Ótimo! Agora, vamos usar a funçao TestModularity() para investigar o padrão de modularidade nos crânios das duas espécies de <em>Dentus</em>. Para isso, vamos correlacionar uma matriz teórica baseada em hipótese de relações de desenvolvimento e função entre os caracteres medidos (baseada na literatura existente para esse grupo). Elas sao duas espécies do mesmo gênero e, por isso, vamos usar as mesmas hipóteses.</p>
+<p>Primeiro vamos olhar as hipoteses de modularidade usadas para construir matrizes teoricas de modularidade. Para construir a matriz teorica basta multiplicar um vetor de 0 (fora do modulo) e 1 (dentro do modulo) por ele mesmo transposto. Ao transpor um vetor, eu transformo linhas em colunas e colunas em linhas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(dentus_Models)
+dentus_Models[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
+<span class="kw">t</span>(dentus_Models[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])
+dentus_Models[,<span class="dv">1</span>] <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(dentus_Models[,<span class="dv">1</span>])
+
+TestModularity
+<span class="kw">TestModularity</span>(D_skull_cor, dentus_Models)
 <span class="kw">TestModularity</span>(E_skull_cor, dentus_Models)</code></pre></div>
-<p>O tamanho pode ser visto como um fator global, ou seja, ele estabelece associações entre os caracteres englobando os fatores locais e, dessa forma, pode obscurecer a individualidade dos módulos. Vamos usar remover o tamanho da matriz usando função <strong>RemoveSize()</strong>. Vamos fazer isso na matriz de covariância (removendo o primeiro componente principal dela) para convertê-la novamente em uma matriz de correlação.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">no.size.D_skull_cov &lt;-<span class="st"> </span><span class="kw">RemoveSize</span>(D_skull_cov)
+<p>O que a matriz teorica de modularidade descreve? Quais foram os modulos detectados nas especies D e E?</p>
+</div>
+<div id="removendo-efeito-de-tamanho" class="section level2">
+<h2>Removendo efeito de tamanho</h2>
+<p>O tamanho pode ser visto como um fator global, ou seja, ele estabelece associações entre os caracteres englobando os fatores locais e, dessa forma, pode obscurecer a individualidade dos módulos. Vamos usar remover o tamanho da matriz usando função <strong>RemoveSize()</strong>. Essa funcao remove a variacao associada ao primeiro componente principal (PC1), que eh tamanho alometrico.</p>
+<p>Primeiro, vamos decompor uma das matrizes em PCs usando ‘single value decomposition’ (svd), mas apenas mostrando o PC1 e o PC2. Como saber qual desses dois vetores eh interpretado como tamanho?</p>
+<p>Para calcular quanto de variacao esta associada a cada PC, olharemos os autovalores de cada PC. Depois, multiplicaremos o PC de tamanho pela raiz quadrada de seu autovalor (size.factor). Finalmente, construiremos uma matriz associada a tamanho, usando mesmo calculo que usamos para construir a matriz teorica de modularidade (size.matrix). Finalmente, descontaremos a mariz de tamanho da matriz original, assim removendo a variacao associada a tamanho.</p>
+<p>A funcao ‘RemoveSize’ faz exatamente essa conta para remover tamanho das matrizes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">svd</span>(D_skull_cov)<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
+<span class="kw">svd</span>(D_skull_cov)<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]
+size.factor &lt;-<span class="st"> </span><span class="kw">svd</span>(D_skull_cov)<span class="op">$</span>u[,<span class="dv">1</span>] <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">svd</span>(D_skull_cov)<span class="op">$</span>d[<span class="dv">1</span>])
+size.factor
+size.matrix &lt;-<span class="st"> </span>size.factor <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(size.factor)
+size.matrix
+<span class="kw">superheat</span>(size.matrix[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>])
+<span class="kw">superheat</span>(D_skull_cov[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>])
+D_skull_cov <span class="op">-</span><span class="st"> </span>size.matrix
+
+RemoveSize
+no.size.D_skull_cov &lt;-<span class="st"> </span><span class="kw">RemoveSize</span>(D_skull_cov)
 no.size.E_skull_cov &lt;-<span class="st"> </span><span class="kw">RemoveSize</span>(E_skull_cov)</code></pre></div>
+<p>Compare a matriz original da especie D com a matriz de tamanho (apenas as 15 primeiras distancias. No que elas diferem? (Dica: olhem para a escala de covariancia).</p>
 <p>Agora vamos transformar essas matrizes de covariância com tamanho removido em matrizes de correlação novamente.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">no.size.D_skull_cor &lt;-<span class="st"> </span><span class="kw">cov2cor</span>(<span class="kw">as.matrix</span>(no.size.D_skull_cov))
 no.size.E_skull_cor &lt;-<span class="st"> </span><span class="kw">cov2cor</span>(<span class="kw">as.matrix</span>(no.size.E_skull_cov))</code></pre></div>
 <p>Em seguida, podemos investigar novamente a presença de módulos, a partir das novas matrizes de correlação (sem tamanho).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">TestModularity</span>(no.size.D_skull_cor, dentus_Models)
 <span class="kw">TestModularity</span>(no.size.E_skull_cor, dentus_Models)</code></pre></div>
+</div>
+<div id="comparando-modelos-de-modularidade" class="section level2">
+<h2>Comparando modelos de modularidade</h2>
 <p>Avaliamos até aqui o padrão de modularidade das espécies D e E, o índice de modularidade e a influência do tamanho na visualização dos módulos. Porém, uma pergunta que vem a mente é: Como faço para testar mais de um modelo de modularidade? Modelos diferentes que incluem apenas dois ou seis ou oito módulos, por exemplo? Vamos agora usar uma nova abordagem (baseada em máxima verossimilhança e comparação de modelos gerados) e testar modelos que possuem estruturas diferentes.</p>
 <p>Observação: se ainda não instalou algum desses pacotes, faça isso primeiro. Exemplo: <strong>install.packages(“EMMLi”)</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#carregue o pacote</span>
@@ -431,19 +472,23 @@ no.size.E_skull_cor &lt;-<span class="st"> </span><span class="kw">cov2cor</span
 <span class="co"># vamos ver o dados presentes no pacote. Primeiro a matriz de correlação dos dados tomados do crânio de Macaca fuscata. Explore o objeto com str() e head().</span>
 
 <span class="kw">help</span>(<span class="st">&quot;macacaCorrel&quot;</span>)
-<span class="kw">str</span>(macacaCorrel)
+<span class="kw">class</span>(macacaCorrel)
 <span class="kw">head</span>(macacaCorrel)
 
 <span class="co"># veja no help a descrição dos modelos utilizados para testar os possíveis padrões de modularidade no crânio de Macaca fuscata. Explore o objeto.</span>
 
 <span class="kw">help</span>(<span class="st">&quot;macacaModels&quot;</span>)
-<span class="kw">str</span>(macacaModels)
-<span class="kw">head</span>(macacaModels)</code></pre></div>
+macacaModels[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</code></pre></div>
 <p>Explorando os objetos <em>macacaCorrel</em> e <em>macacaModels</em>, como foi postado acima, você consegue identificar quantos indivíduos o dataset contém e quantos modelos de modularidade serão testados? Olhe os argumentos da função <em>EMMLi</em> e você vai perceber que um dos argumentos necessários para rodá-la é exatamente o número de indivíduos do dataset a ser testado (macacaCorrel).</p>
-<p>Agora, você pode correr a função <strong>EMMLi</strong> e testar qual modelo de modularidade será mais adequado para o crânio de <em>Macaca fuscata</em>. Crie um objeto chamado ModeloMacaca para isso e veja qual foi o modelo selecionado como o padrão de modularidade para o dataset de <em>Macaca fuscata</em>. Dica: abra o help da função e veja os argumentos necessários.</p>
-<p>Pronto! definido o modelo de modularidade para <em>M. fuscata</em> vamos plotar os valores de correlaçoes dentro e entre módulos que foi dado depois de rodar a função <strong>EMMLi</strong>. No plot abaixo, os círculos representam os valores dentro dos módulos e os triângulos reprensetam os valores entre módulos.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(modeloMacaca<span class="op">$</span>rho<span class="op">$</span><span class="st">`</span><span class="dt">Cheverud.sep.Mod + sep.between</span><span class="st">`</span>[<span class="dv">2</span>,],<span class="dt">pch=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">17</span>)),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">25</span>), <span class="dt">xlab=</span><span class="st">&quot;Dentro e entre modulos&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Correlacoes&quot;</span>)</code></pre></div>
-<p>Observe os valores de correlação dentro e entre os módulos. Como você interpretaria esses valores dados pelo gráfico?</p>
+<p>Agora, você pode correr a função <strong>EMMLi</strong> e testar qual modelo de modularidade será mais adequado para o crânio de <em>Macaca fuscata</em>. Crie um objeto chamado modeloMacaca para isso e veja qual foi o modelo selecionado como o padrão de modularidade para o dataset de <em>Macaca fuscata</em>. Dica: abra o help da função e veja os argumentos necessários.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(EMMli)
+
+<span class="co">#modeloMacaca &lt;- ESCREVA SEU CODIGO AQUI</span>
+
+
+
+<span class="kw">plot</span>(modeloMacaca<span class="op">$</span>rho<span class="op">$</span><span class="st">`</span><span class="dt">Cheverud.sep.Mod + sep.between</span><span class="st">`</span>[<span class="dv">2</span>,],<span class="dt">pch=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>),<span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">17</span>)),<span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">25</span>), <span class="dt">xlab=</span><span class="st">&quot;Dentro e entre modulos&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Correlacoes&quot;</span>)</code></pre></div>
+<p>Pronto! definido o modelo de modularidade para <em>M. fuscata</em> vamos plotar os valores de correlaçoes dentro e entre módulos que foi dado depois de rodar a função <strong>EMMLi</strong>. No plot abaixo, os círculos representam os valores dentro dos módulos e os triângulos reprensetam os valores entre módulos. Observe os valores de correlação dentro e entre os módulos. Como você interpretaria esses valores dados pelo gráfico?</p>
 </div>
 </div>
 

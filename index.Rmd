@@ -48,23 +48,20 @@ if(!require(kableExtra)){install.packages("kableExtra"); library(kableExtra)}
 dt = data.frame(Dias = paste(rep(c("Segunda", 
                                    "Terça", 
                                    "Quarta", 
-                                   "Quinta", 
-                                   "Sexta"), each = 2), c("Manhã", "Tarde"))[1:9],
+                                   "Quinta"), each = 2), c("Manhã", "Tarde")),
                 Aula =c("Introdução e Histórico", "Introdução à Genética Quantitativa",
                         "Homologia e Mensuração", "Caracterização de variação multidimensional",
                         "Niveis de Modularidade", "Detecção de Modularidade",
-                        "Seleção e a Paisagem Adaptativa", "Sem aula",
-                        "Consequencias Evolutivas da Modularidade"),
+                        "Seleção e a Paisagem Adaptativa", "Consequencias Evolutivas da Modularidade"),
                 Tutorial = c("Introdução ao R", "Sem tutorial",
                              "Introdução à Algebra Linear", "Estimando matrizes e componentes principais",
                              "Sem tutorial", "Detectando Modularidade",
-                             "Sem Tutorial", "Estimando Seleção e a Matriz G",
+                             "Estimando Seleção e a Matriz G",
                              "Consequências Evolutivas"),
                 Ministrante = c("Monique", "Diogo",
                                 "Diogo", "Diogo",
                                 "Monique", "Monique",
-                                "Diogo", "",
-                                "Monique"))
+                                "Diogo", "Monique"))
                 
 dt %>%
   kable() %>%

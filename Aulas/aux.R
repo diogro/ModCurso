@@ -1,5 +1,8 @@
 require(knitr)
 require(rmarkdown)
+if(!require(here)){install.packages("here"); library(here)} 
+
+setwd(here::here("Aulas"))
 
 render('02/index.Rmd', output_dir = '02/')
 
